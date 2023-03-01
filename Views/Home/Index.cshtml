@@ -1,0 +1,26 @@
+﻿
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@model IEnumerable< test.ModelsView.StudyGroupModelView>
+
+<h2>Учебные группы</h2>
+<p>Учебные группы</p>
+<table class="table_group">
+    <tr><th>Название</th><th>Преподаватель</th><th>Количество студентов</th></tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Teacher</td>
+            <td>@item.Count</td>
+            <td><a asp-action="EditGroup" asp-controller="Home" asp-route-id="@item.Id"> Редактировать </a></td>
+        </tr>
+    }
+</table>
+<form asp-action="CreateGroup" asp-controller="home" method="get">
+    <button type="submit">Создать учебную группу</button>
+</form>

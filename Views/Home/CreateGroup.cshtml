@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using test.Models;
+@using test.ModelsCreate;
+
+@model test.ModelsCreate.CreateGroup
+
+<h2>Учебные группы</h2>
+<p><a asp-action="index" asp-controller="home"> Учебные группы</a> > Создать учебную группу</p>
+
+<form asp-action="CreateGroup" asp-controller="home">
+    <p>
+        <label asp-for="group.Title">Название учебной группы</label><br />
+        <input type="text" asp-for="group.Title" />
+    </p>
+    <p>
+        <label asp-for="group.Teacher.ID">Преподаватель</label><br />
+        <select asp-for="group.Teacher.ID">Преподаватель">
+            @foreach (TeacherModel teacher in Model.teachers)
+            {
+                <option value="@teacher.ID">@teacher.FIO</option>
+            }
+        </select>
+    </p>
+    <p>
+        <input type="submit" value="Добавить" />
+    </p>
+</form>

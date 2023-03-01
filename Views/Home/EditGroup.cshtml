@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using test.Models
+@model test.ModelsView.EditViewGroup
+
+
+<h2>Редактировать учебную группу</h2>
+<p><a asp-action="index" asp-controller="home"> Учебные группы</a> > Редактировать учебную группу</p>
+<form asp-action="editGroup" asp-controller="home" asp-route-id="@Model.Study.Id">
+    <p>
+        <label asp-for="Study.Title">Название учебной группы</label><br />
+        <input type="text" asp-for="Study.Title" />
+    </p>
+  
+    <p>
+        <label asp-for="Study.Teacher">Преподаватель</label>
+        <label style="font-weight:bold" asp-for="Study.Teacher">@Model.Study.Teacher </label>
+    </p>
+    <p>
+        <input type="submit" value="Сохранить изменения" />
+    </p>
+</form>
+
+
+<table class="table_group">
+    <tr><th>Студент</th><th>Организация</th></tr>
+    @foreach (var item in Model.Students)
+    {
+        <tr>
+            <td>@item.FIO</td>
+            <td>@item.Organization</td>
+           
+            <td><a asp-action="delStudent" asp-controller="home" asp-route-id="@item.Id"> Удалить из группы </a></td>
+        </tr>
+    }
+</table>
+<form asp-action="AddStudent" asp-controller="home" asp-route-id="@Model.Study.Id" method="get">
+
+   
+    <input type="submit" value="Добавить в учебную группу"/>
+</form>
